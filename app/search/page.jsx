@@ -1,0 +1,8 @@
+export default function SearchPage () {
+  return (
+    <>
+      <h2>Search Page</h2>
+      <div></div>
+    </>
+  )
+}
