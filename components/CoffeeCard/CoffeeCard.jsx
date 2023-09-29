@@ -16,7 +16,7 @@ export default function CoffeeCard({ store }) {
         className="w-full h-40 object-cover rounded-t-lg"
       />
       <div className="p-4">
-        <h4 className="text-xl font-bold mb-2">{store.name}</h4>
+        <h4 classname="text-xl font-bold text-orange-700 mb-2">{store.name}</h4>
         <p className="text-gray-600 truncate" style={{maxWidth:'20ch'}}>{store.address}</p>
         {store.neighbourhood && (
           <p className="text-gray-600">{store.neighbourhood}</p>
