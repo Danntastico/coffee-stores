@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tabler/icons-react": "^2.37.0",
     "next": "latest",
     "node-fetch": "^3.3.2",
     "react": "latest",
     "react-dom": "latest",
+    "swr": "^2.2.4",
     "unsplash-js": "^7.0.18"
   },
   "devDependencies": {
