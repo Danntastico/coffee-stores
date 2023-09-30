@@ -11,7 +11,7 @@
   "dependencies": {
     "@tabler/icons-react": "^2.37.0",
     "next": "latest",
-    "node-fetch": "2.6.1",
+    "node-fetch": "^2.7.0",
     "react": "latest",
     "react-dom": "latest",
     "swr": "^2.2.4",
