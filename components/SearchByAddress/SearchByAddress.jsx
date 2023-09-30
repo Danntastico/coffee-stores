@@ -1,13 +1,15 @@
 'use client'
 
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { IconSearch } from '@tabler/icons-react';
-import { FOURSQUARE_API_URL, fetchAutoComplete } from "@/lib/foursquare";
-import useSWRMutation from 'swr/mutation'
 import { SearchContext } from "@/containers";
 
 export default function SearchByAddress() {
-  const { data, handleSearchInputChange } = useContext(SearchContext)
+  const { addressesList, handleSearchInputChange, setAddressInfo } = useContext(SearchContext)
+
+  const handleItemClick = (data) => {
+    setAddressInfo(data)
+  }
 
   return (
     <div className={styles.container}>
@@ -19,10 +21,14 @@ export default function SearchByAddress() {
       />
       <IconSearch className={styles.svg} />
       {
-        data && data.length && (
+        addressesList && addressesList.length && (
           <ul className={styles.dropdown}>
-            {data.map((item, ix) => (
-              <li key={`${ix} ${item.primaryText}`} className={styles.dropdownItem} >
+            {addressesList.map((item, ix) => (
+              <li
+                key={`${ix} ${item.primaryText}`}
+                className={styles.dropdownItem}
+                onClick={() => handleItemClick(item)}
+              >
                 <span>{item.primaryText}</span>
               </li>
             ))}
