@@ -16,6 +16,9 @@
     "node-fetch": "^2.7.0",
     "react": "latest",
     "react-dom": "latest",
+    "react-virtualized-auto-sizer": "^1.0.20",
+    "react-window": "^1.8.9",
+    "react-window-infinite-loader": "^1.0.9",
     "swr": "^2.2.4",
     "unsplash-js": "^7.0.18"
   },
