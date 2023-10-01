@@ -14,7 +14,7 @@ export default function SearchPage() {
 }
 
 const styles = {
-  container: "flex justify-center items-center mt-14 flex-col",
+  container: "flex justify-center items-center mt-10 flex-col",
   h2: "text-green-700 font-black uppercase text-4xl",
   span: "text-orange-700"
 }
