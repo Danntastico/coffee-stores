@@ -1,6 +1,6 @@
 'use client'
 
-import { SearchByAddress } from "@/components"
+import { SearchByAddress, SearchResults } from "@/components"
 import { FOURSQUARE_API_URL, fetchAutoComplete, fetchStoresByLL } from "@/lib/foursquare"
 import { createContext, useEffect, useState } from "react"
 import useSWRMutation from "swr/mutation"
@@ -13,9 +13,7 @@ export default function SearchStores() {
   const { data: storesList, trigger: triggerByLL } = useSWRMutation('places/search', fetchStoresByLL)
   const [addressInfo, setAddressInfo] = useState(null)
 
-  console.log(addressInfo)
-  const handleSearchInputChange = async (e) => {
-    const query = e.target.value;
+  const handleSearchInputChange = async (query) => {
     trigger(query)
   };
 
@@ -25,11 +23,16 @@ export default function SearchStores() {
   }, [addressInfo, triggerByLL])
 
   return (
-    <SearchContext.Provider value={{ addressesList, handleSearchInputChange, setAddressInfo }}>
+    <SearchContext.Provider
+      value={{
+        addressInfo,
+        addressesList,
+        storesList,
+        handleSearchInputChange,
+        setAddressInfo
+      }}>
       <SearchByAddress />
-      <div>
-
-      </div>
+      {storesList && <SearchResults />}
     </SearchContext.Provider>
   )
 }

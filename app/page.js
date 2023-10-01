@@ -1,14 +1,6 @@
 import { CoffeeCard } from '@/components'
 import { fetchStoresByPlace } from 'lib/foursquare'
 
-const rawdata = {
-  id: '4c0b1f8702c9d13a5a1274dd',
-  address: 'Calle 11 No 6-50',
-  name: 'La Puerta Falsa',
-  neighbourhood: '',
-  imgUrl: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDg1NDl8MHwxfHNlYXJjaHwxMHx8Y29mZmVlJTIwc2hvcHxlbnwwfHx8fDE2OTU5MzYxNDJ8MA&ixlib=rb-4.0.3&q=80&w=400'
-}
-
 export default async function Home() {
   const data = await fetchStoresByPlace();
   return (

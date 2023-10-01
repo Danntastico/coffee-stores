@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import './globals.css'
 import { Roboto_Flex } from 'next/font/google'
+import '@mantine/core/styles.css';
+import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 
 const roboto = Roboto_Flex({ subsets: ['latin'] })
 
@@ -12,6 +14,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <ColorSchemeScript />
+      </head>
       <body className={`${roboto.className} bg-gray-100`}>
         <nav className="text-green-700 p-4 border-b-2 border-gray-200">
           <div className="container mx-auto">
@@ -21,7 +26,9 @@ export default function RootLayout({ children }) {
           </div>
         </nav>
         <div className='m4'>
-          {children}
+          <MantineProvider>
+            {children}
+          </MantineProvider>
         </div>
       </body>
     </html>
