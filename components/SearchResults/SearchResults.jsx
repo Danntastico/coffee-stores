@@ -5,14 +5,11 @@ import { SearchContext } from "@/containers"
 import { Loading } from ".."
 import Image from "next/image"
 import { FixedSizeList as List } from 'react-window'
-import InfiniteLoader from 'react-window-infinite-loader'
 import AutoSizer from 'react-virtualized-auto-sizer'
 
-// flex flex-col w-full border-t border-gray-200 p-4 mt-4
-// 65.09 px 179.97px = 245,06px
 export default function SearchResults() {
   const { addressInfo, storesList } = useContext(SearchContext)
-  console.log(storesList)
+
   return (
     <>
       <div
@@ -23,42 +20,44 @@ export default function SearchResults() {
           <h4 className="text-gray-500 text-sm italic">Search results for</h4>
           <h3 className="text-orange-700 text-2xl font-bold">{addressInfo.primaryText}</h3>
         </div>
-        <AutoSizer>
-          {({ height, width }) => (
-            <List
-              height={height}
-              itemCount={storesList.length}
-              itemSize={225}
-              width={width}
-            >
-              {
-                ({ index, style }) => {
-                  return (
-                    <div
-                      key={`${index} ${storesList[index].fsq_id}`}
-                      className="flex border-gray-200 shadow-sm my-3 p-4"
-                      {...{ style }}
-                    >
-                      <div className="relative h-48 w-64 rounded-lg" >
-                        <Image
-                          src={storesList[index].imgUrl}
-                          fill
-                          alt={`${storesList[index].name}`}
-                          objectFit="cover" sizes=""
-                          className="rounded-lg shadow-md"
-                        />
+        <Suspense fallback={<Loading />}>
+          <AutoSizer>
+            {({ height, width }) => (
+              <List
+                height={height}
+                itemCount={storesList.length}
+                itemSize={225}
+                width={width}
+              >
+                {
+                  ({ index, style }) => {
+                    return (
+                      <div
+                        key={`${index} ${storesList[index].fsq_id}`}
+                        className="flex border-gray-200 shadow-sm my-3 p-4"
+                        {...{ style }}
+                      >
+                        <div className="relative h-48 w-64 rounded-lg" >
+                          <Image
+                            src={storesList[index].imgUrl}
+                            fill
+                            alt={`${storesList[index].name}`}
+                            objectFit="cover" sizes=""
+                            className="rounded-lg shadow-md"
+                          />
+                        </div>
+                        <div className="w-full mx-4 flex flex-col justify-center">
+                          <h5 className="text-green-700 font-bold text-xl">{storesList[index].name}</h5>
+                          <span className="text-gray-500 font-normal italic text-sm">{storesList[index].location.address} - {storesList[index].location.country}</span>
+                        </div>
                       </div>
-                      <div className="w-full mx-4 flex flex-col justify-center">
-                        <h5 className="text-green-700 font-bold text-xl">{storesList[index].name}</h5>
-                        <span className="text-gray-500 font-normal italic text-sm">{storesList[index].location.address} - {storesList[index].location.country}</span>
-                      </div>
-                    </div>
-                  )
+                    )
+                  }
                 }
-              }
-            </List>
-          )}
-        </AutoSizer>
+              </List>
+            )}
+          </AutoSizer>
+        </Suspense>
       </div>
     </>
   )

@@ -12,7 +12,7 @@ export default function SearchStores() {
   const { data: addressesList, trigger } = useSWRMutation(FOURSQUARE_API_URL, fetchAutoComplete)
   const { data: storesList, trigger: triggerByLL } = useSWRMutation('places/search', fetchStoresByLL)
   const [addressInfo, setAddressInfo] = useState(null)
-
+  
   const handleSearchInputChange = async (query) => {
     trigger(query)
   };
